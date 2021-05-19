@@ -171,7 +171,7 @@ namespace labb3PhilipOttosson.Models
                     trackList.Add(trackID);
                 }
             }
-            //Finds the right playlist
+            //Checks if the playlistInfo is the name or the id.
             int playlistID;
             bool isNumber = Int32.TryParse(playlistInfo, out playlistID);
 
@@ -201,13 +201,19 @@ namespace labb3PhilipOttosson.Models
                 Console.WriteLine("They have been successfully removed");
             }
         }
+        /// <summary>
+        /// Will run the method "AddTracks" which returns a list of trackids 
+        /// and then addd them to the database. 
+        /// </summary>
+        /// <param name="playlistInfo">Information about the playlist (Could be name or id)</param>
         private static void ModifyAdd(string playlistInfo)
         {
             List<int> trackList = new List<int>();
             trackList = AddTracks();
-            //Finds the right playlist
+            //Checks if the playlistInfo is the name or the id.
             int playlistID;
             bool isNumber = Int32.TryParse(playlistInfo, out playlistID);
+
             Track track = new Track();
             Playlist playlist = new Playlist();
             using (var context = new MusicContext())
@@ -239,6 +245,11 @@ namespace labb3PhilipOttosson.Models
                 }
             }
         }
+        /// <summary>
+        /// Will ask the user for tracks to add and put it into a list,
+        /// then it will return the list
+        /// </summary>
+        /// <returns>List of trackids</returns>
         private static List<int> AddTracks()
         {
             Console.WriteLine("\nWould you like to see a list of the tracks? (y/n)");
